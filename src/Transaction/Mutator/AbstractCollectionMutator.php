@@ -10,7 +10,8 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      * @var \SplFixedArray
      */
     protected $set;
-
+    protected $myIterator;
+    
     /**
      * @return array
      */
@@ -40,7 +41,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      */
     public function rewind()
     {
-        $this->set->rewind();
+        $this->myIterator->rewind();
     }
 
     /**
@@ -48,7 +49,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      */
     public function current()
     {
-        return $this->set->current();
+        return $this->myIterator->current();
     }
 
     /**
@@ -56,7 +57,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      */
     public function key()
     {
-        return $this->set->key();
+        return $this->myIterator->key();
     }
 
     /**
@@ -64,7 +65,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      */
     public function next()
     {
-        $this->set->next();
+        $this->myIterator->next();
     }
 
     /**
@@ -72,7 +73,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      */
     public function valid()
     {
-        return $this->set->valid();
+        return $this->myIterator->valid();
     }
 
     /**

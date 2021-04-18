@@ -21,6 +21,12 @@ class InputCollectionMutator extends AbstractCollectionMutator
         }
 
         $this->set = \SplFixedArray::fromArray($set, false);
+
+        if(method_exists('SplFixedArray','getIterator')){
+            $this->myIterator = $this->set->getIterator();
+        } else {
+            $this->myIterator = $this->set;
+        }
     }
 
     /**
@@ -28,7 +34,7 @@ class InputCollectionMutator extends AbstractCollectionMutator
      */
     public function current(): InputMutator
     {
-        return $this->set->current();
+        return $this->myIterator->current();
     }
 
     /**

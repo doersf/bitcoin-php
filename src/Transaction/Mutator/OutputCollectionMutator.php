@@ -19,6 +19,12 @@ class OutputCollectionMutator extends AbstractCollectionMutator
             /** @var int $i */
             $this->set[$i] = new OutputMutator($output);
         }
+
+        if(method_exists('SplFixedArray','getIterator')){
+            $this->myIterator = $this->set->getIterator();
+        } else {
+            $this->myIterator = $this->set;
+        }
     }
 
     /**
@@ -26,7 +32,7 @@ class OutputCollectionMutator extends AbstractCollectionMutator
      */
     public function current(): OutputMutator
     {
-        return $this->set->current();
+        return $this->myIterator->current();
     }
 
     /**
