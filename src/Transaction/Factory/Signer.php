@@ -92,7 +92,7 @@ class Signer
             return $this;
         } else {
             throw new SignerException("Cannot change CheckerCreator after inputs have been parsed");
-        }
+        }        
     }
 
     /**

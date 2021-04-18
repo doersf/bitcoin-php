@@ -41,9 +41,6 @@ class LocktimeTest extends AbstractTestCase
 
     /**
      * Test that fromTimestamp rejects timestamps that exceed the max (0xffffffff - 500000000)
-     *
-     * @expectedException \Exception
-     * @expectedExceptionMessage Timestamp out of range
      */
     public function testMaxFromTimestamp()
     {
@@ -56,6 +53,8 @@ class LocktimeTest extends AbstractTestCase
         $this->assertEquals(Locktime::INT_MAX, $nTime);
 
         $disallowed = $allowed + 1;
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Timestamp out of range");
         $locktime->fromTimestamp($disallowed);
     }
 
@@ -63,8 +62,6 @@ class LocktimeTest extends AbstractTestCase
      * Test that toTimestamp accepts the maximum locktime int, 0xffffffff,
      * but rejects anything higher
      *
-     * @expectedException \Exception
-     * @expectedExceptionMessage Lock time too large
      */
     public function testMaxToTimestamp()
     {
@@ -75,42 +72,48 @@ class LocktimeTest extends AbstractTestCase
         $this->assertEquals(Locktime::TIME_MAX, $timestamp);
 
         $disallowed = $allowed + 1;
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Lock time too large");
         $locktime->toTimestamp($disallowed);
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Lock time out of range for timestamp
-     */
     public function testToTimeStampButTooLow()
     {
         $locktime = new Locktime();
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Lock time out of range for timestamp");
         $locktime->toTimestamp(1);
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage This block height is too high
-     */
     public function testFromBlockHeightTooHigh()
     {
         $locktime = new Locktime();
         $disallowed = Locktime::BLOCK_MAX + 1;
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("This block height is too high");
         $locktime->fromBlockHeight($disallowed);
     }
 
-    /**
-     * @expectedException \Exception
-     * @expcetedExceptionMessage This locktime is out of range for a block height
-     */
-    public function testToBlockHeightF()
+    public function testToBlockHeightFAllowed()
     {
+
         $locktime = new Locktime();
 
-        $allowed = Locktime::BLOCK_MAX;
+        $allowed = Locktime::BLOCK_MAX - 1;
         $this->assertEquals($allowed, $locktime->toBlockHeight($allowed));
 
-        $disallowed = $allowed + 1;
+    }
+
+    public function testToBlockHeightFDisallowed()
+    {
+
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("This locktime is out of range for a block height");
+
+        $locktime = new Locktime();
+
+        $disallowed = Locktime::BLOCK_MAX + 1;
         $locktime->toBlockHeight($disallowed);
+
     }
 }

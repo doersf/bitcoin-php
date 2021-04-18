@@ -83,6 +83,8 @@ class ParserTest extends AbstractTestCase
                 }
             }
         }
+
+        $this->addToAssertionCount(1);
     }
 
     public function testParse()

@@ -288,11 +288,15 @@ class Script extends Serializable implements ScriptInterface
      */
     public function isP2SH(& $scriptHash): bool
     {
+        $inhexform = bin2hex($this->script);
+        $inhexformarray = str_split($inhexform,2);
+
         if (strlen($this->script) === 23
-            && $this->script[0] = Opcodes::OP_HASH160
-            && $this->script[1] = 20
-            && $this->script[22] = Opcodes::OP_EQUAL
+            && ($inhexformarray[0] == "a9") // OP_HASH160
+            && ($inhexformarray[1] == "14") // 20
+            && ($inhexformarray[22] == "87") // OP_EQUAL
         ) {
+            $this->script = hex2bin(implode($inhexformarray)); // implode(array_map("chr", $mbsplitform)); //pack("C*", $mbsplitform);
             $scriptHash = new Buffer(substr($this->script, 2, 20));
             return true;
         }

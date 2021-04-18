@@ -9,10 +9,11 @@ use BitWasp\Bitcoin\Crypto\EcAdapter\Impl\PhpEcc\Key\PublicKey;
 use BitWasp\Bitcoin\Key\Factory\PublicKeyFactory;
 use BitWasp\Bitcoin\Tests\AbstractTestCase;
 use BitWasp\Buffertools\Buffer;
+use PhpParser\Builder\Class_;
 
 class PublicKeyTest extends AbstractTestCase
 {
-    public function getPublicVectors()
+    public function getPublicVectors(): array
     {
         $json = json_decode($this->dataFile('publickey.compressed.json'));
         $results = [];
@@ -64,22 +65,22 @@ class PublicKeyTest extends AbstractTestCase
     /**
      * @dataProvider getEcAdapters
      * @param EcAdapterInterface $ecAdapter
-     * @expectedException \Exception
      */
     public function testFromHexInvalidLength(EcAdapterInterface $ecAdapter)
     {
         $hex = '02cffc9fcdc2a4e6f5dd91aee9d8d79828c1c93e7a76949a451aab8be6a0c44febaa';
         $pubKeyFactory = new PublicKeyFactory($ecAdapter);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Invalid hex string, must match size of compressed or uncompressed public key");
         $pubKeyFactory->fromHex($hex);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testFromHexInvalidByte()
     {
         $hex = '01cffc9fcdc2a4e6f5dd91aee9d8d79828c1c93e7a76949a451aab8be6a0c44feb';
         $pubKeyFactory = new PublicKeyFactory();
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Unknown public key prefix");
         $pubKeyFactory->fromHex($hex);
     }
 
@@ -98,17 +99,16 @@ class PublicKeyTest extends AbstractTestCase
         $this->assertFalse(PublicKey::isCompressedOrUncompressed(Buffer::hex('050001020304050607080900010203040506070809000102030405060708090001')));
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testFromHexInvalidByte2()
     {
         $hex = '04cffc9fcdc2a4e6f5dd91aee9d8d79828c1c93e7a76949a451aab8be6a0c44feb';
         $pubKeyFactory = new PublicKeyFactory();
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Invalid length for uncompressed key");
         $pubKeyFactory->fromHex($hex);
     }
 
-    public function getPkHashVectors()
+    public function getPkHashVectors(): array
     {
         $json = json_decode($this->dataFile('publickey.pubkeyhash.json'));
         $results = [];
