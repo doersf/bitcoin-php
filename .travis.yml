@@ -1,6 +1,7 @@
 language: php
 
-dist: trusty
+os:
+  - linux
 
 php:
   - 7.0
