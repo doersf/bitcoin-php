@@ -38,9 +38,5 @@
 	"ext-mbstring": "*",
 	"ext-gmp": "*",
 	"ext-bcmath": "*"
-    },
-    "suggest": {
-	"ext-secp256k1": "The secp256k1 library for fast and safe elliptic curve operations",
-	"ext-bitcoinconsensus": "The bitcoinconsensus library for safest possible script verification"
     }
 }
