@@ -16,6 +16,7 @@ use BitWasp\Bitcoin\Script\WitnessProgram;
 use BitWasp\Bitcoin\Script\WitnessScript;
 use BitWasp\Buffertools\Buffer;
 use BitWasp\Buffertools\BufferInterface;
+use BitWasp\Bitcoin\Bech32;
 
 class AddressCreator extends BaseAddressCreator
 {
@@ -50,7 +51,7 @@ class AddressCreator extends BaseAddressCreator
     protected function readSegwitAddress(string $strAddress, NetworkInterface $network)
     {
         try {
-            list ($version, $program) = \BitWasp\Bech32\decodeSegwit($network->getSegwitBech32Prefix(), $strAddress);
+            list ($version, $program) = Bech32::decodeSegwit($network->getSegwitBech32Prefix(), $strAddress);
 
             if (0 === $version) {
                 $wp = WitnessProgram::v0(new Buffer($program));

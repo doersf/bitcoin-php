@@ -8,6 +8,7 @@ use BitWasp\Bitcoin\Bitcoin;
 use BitWasp\Bitcoin\Network\NetworkInterface;
 use BitWasp\Bitcoin\Script\ScriptInterface;
 use BitWasp\Bitcoin\Script\WitnessProgram;
+use BitWasp\Bitcoin\Bech32;
 
 class SegwitAddress extends Address implements Bech32AddressInterface
 {
@@ -61,6 +62,6 @@ class SegwitAddress extends Address implements Bech32AddressInterface
     {
         $network = $network ?: Bitcoin::getNetwork();
 
-        return \BitWasp\Bech32\encodeSegwit($network->getSegwitBech32Prefix(), $this->witnessProgram->getVersion(), $this->witnessProgram->getProgram()->getBinary());
+        return Bech32::encodeSegwit($network->getSegwitBech32Prefix(), $this->witnessProgram->getVersion(), $this->witnessProgram->getProgram()->getBinary());
     }
 }
