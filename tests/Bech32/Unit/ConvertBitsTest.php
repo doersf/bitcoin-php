@@ -7,10 +7,6 @@ use BitWasp\Bitcoin\Bech32;
 
 class ConvertBitsTest extends TestCase
 {
-    /**
-     * @expectedException \BitWasp\Bech32\Exception\Bech32Exception
-     * @expectedExceptionMessage Invalid value for convert bits
-     */
     public function testInvalidCharValue()
     {
         $this->expectException(\BitWasp\Bitcoin\Exceptions\Bech32Exception::class);
