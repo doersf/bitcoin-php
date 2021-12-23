@@ -88,7 +88,7 @@ abstract class StaticCollection implements CollectionInterface
     /**
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
@@ -112,7 +112,7 @@ abstract class StaticCollection implements CollectionInterface
     /**
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         ++$this->position;
     }
@@ -129,7 +129,7 @@ abstract class StaticCollection implements CollectionInterface
      * @param int $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->set);
     }
@@ -137,7 +137,7 @@ abstract class StaticCollection implements CollectionInterface
     /**
      * @param int $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         throw new \RuntimeException('Cannot unset from a Static Collection');
     }
@@ -159,7 +159,7 @@ abstract class StaticCollection implements CollectionInterface
      * @param int $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         throw new \RuntimeException('Cannot add to a Static Collection');
     }

@@ -285,7 +285,7 @@ class Opcodes implements \ArrayAccess
     /**
      * @param int $op
      */
-    private function opExists(int $op)
+    private function opExists(int $op): void
     {
         if (!array_key_exists($op, self::$names)) {
             throw new \RuntimeException("Opcode not found");
@@ -295,7 +295,7 @@ class Opcodes implements \ArrayAccess
     /**
      * @param string $name
      */
-    private function opNameExists(string $name)
+    private function opNameExists(string $name): void
     {
         if (!array_key_exists($name, $this->known)) {
             throw new \RuntimeException("Opcode by that name not found");
@@ -343,7 +343,7 @@ class Opcodes implements \ArrayAccess
     /**
      * @throws \RuntimeException
      */
-    private function errorNoWrite()
+    private function errorNoWrite(): void
     {
         throw new \RuntimeException('Cannot write to Opcodes');
     }
@@ -351,7 +351,7 @@ class Opcodes implements \ArrayAccess
     /**
      * @param int $pos
      */
-    public function offsetUnset($pos)
+    public function offsetUnset($pos): void
     {
         $this->errorNoWrite();
     }
@@ -360,7 +360,7 @@ class Opcodes implements \ArrayAccess
      * @param int $pos
      * @param mixed $value
      */
-    public function offsetSet($pos, $value)
+    public function offsetSet($pos, $value): void
     {
         $this->errorNoWrite();
     }
