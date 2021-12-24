@@ -86,7 +86,7 @@ class Parser implements \Iterator
      * @param integer $strSize
      * @return array|bool
      */
-    private function unpackSize(string $packFormat, int $strSize)
+    private function unpackSize(string $packFormat, int $strSize): array|bool
     {
         if ($this->end - $this->position < $strSize) {
             return false;
@@ -103,7 +103,7 @@ class Parser implements \Iterator
      * @param int $ptr
      * @return Operation
      */
-    private function doNext(int $ptr)
+    private function doNext(int $ptr): Operation
     {
         if ($this->position >= $this->end) {
             throw new \RuntimeException('Position exceeds end of script!');
@@ -147,7 +147,7 @@ class Parser implements \Iterator
      * @param null|int $length
      * @return Script
      */
-    public function slice(int $begin, int $length = null)
+    public function slice(int $begin, int $length = null): Script
     {
         if ($begin < 0) {
             throw new \RuntimeException("Invalid start of script - cannot be negative or ");
@@ -200,15 +200,15 @@ class Parser implements \Iterator
     /**
      * @return Operation|null
      */
-    public function next(): Operation|null
+    public function next(): void
     {
         $ptr = $this->execPtr;
         if (isset($this->array[$ptr])) {
             $this->execPtr++;
-            return $this->array[$ptr];
+            //            return $this->array[$ptr];
         }
 
-        return null;
+        //        return null;
     }
 
     /**
