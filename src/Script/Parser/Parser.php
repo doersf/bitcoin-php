@@ -84,9 +84,9 @@ class Parser implements \Iterator
     /**
      * @param string $packFormat
      * @param integer $strSize
-     * @return array|bool
+     * @return int|bool
      */
-    private function unpackSize(string $packFormat, int $strSize): array|bool
+    private function unpackSize(string $packFormat, int $strSize): int|bool
     {
         if ($this->end - $this->position < $strSize) {
             return false;

@@ -40,7 +40,7 @@ class Stack implements \Countable, \ArrayAccess, \Iterator
     /**
      * @return BufferInterface
      */
-    public function current(): BufferInterface
+    public function current(): mixed
     {
         return $this->values[$this->position];
     }
@@ -201,7 +201,7 @@ class Stack implements \Countable, \ArrayAccess, \Iterator
         }
     }
 
-    public function pop(): Buffer
+    public function pop(): BufferInterface|bool
     {
         $count = count($this);
         if ($count === 0) {
