@@ -37,9 +37,6 @@ class Stack implements \Countable, \ArrayAccess, \Iterator
         return $this->values;
     }
 
-    /**
-     * @return BufferInterface
-     */
     public function current(): mixed
     {
         return $this->values[$this->position];
