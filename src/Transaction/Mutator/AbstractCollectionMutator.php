@@ -39,7 +39,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
     /**
      *
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->myIterator->rewind();
     }
@@ -47,7 +47,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
     /**
      * @return mixed
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->myIterator->current();
     }
@@ -55,7 +55,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
     /**
      * @return int
      */
-    public function key()
+    public function key(): int
     {
         return $this->myIterator->key();
     }
@@ -63,7 +63,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
     /**
      *
      */
-    public function next()
+    public function next(): void
     {
         $this->myIterator->next();
     }
@@ -71,7 +71,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
     /**
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->myIterator->valid();
     }
@@ -80,7 +80,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      * @param int $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->set->offsetExists($offset);
     }
@@ -88,7 +88,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
     /**
      * @param int $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         if (!$this->offsetExists($offset)) {
             throw new \InvalidArgumentException('Offset does not exist');
@@ -101,7 +101,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      * @param int $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if (!$this->set->offsetExists($offset)) {
             throw new \OutOfRangeException('Nothing found at this offset');
@@ -113,7 +113,7 @@ abstract class AbstractCollectionMutator implements \Iterator, \ArrayAccess, \Co
      * @param int $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->set->offsetSet($offset, $value);
     }

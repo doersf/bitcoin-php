@@ -61,7 +61,7 @@ class Stack implements \Countable, \ArrayAccess, \Iterator
     /**
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->values[$this->position]);
     }
@@ -154,7 +154,7 @@ class Stack implements \Countable, \ArrayAccess, \Iterator
      * @see \ArrayAccess::offsetUnset()
      * @param int $offset
      */
-    public function offsetUnset($offset): int
+    public function offsetUnset($offset): mixed
     {
         $count = count($this);
         $index = $count + $offset;
