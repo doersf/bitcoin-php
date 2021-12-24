@@ -200,7 +200,7 @@ class Parser implements \Iterator
     /**
      * @return Operation|null
      */
-    public function next(): mixed
+    public function next(): Operation|null
     {
         $ptr = $this->execPtr;
         if (isset($this->array[$ptr])) {

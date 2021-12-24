@@ -154,7 +154,7 @@ class Stack implements \Countable, \ArrayAccess, \Iterator
      * @see \ArrayAccess::offsetUnset()
      * @param int $offset
      */
-    public function offsetUnset($offset): mixed
+    public function offsetUnset($offset): void
     {
         $count = count($this);
         $index = $count + $offset;
