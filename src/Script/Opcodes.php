@@ -326,7 +326,7 @@ class Opcodes implements \ArrayAccess
      * @param int $opcode
      * @return string
      */
-    public function offsetGet($opcode): string
+    public function offsetGet($opcode): mixed
     {
         return $this->getOp($opcode);
     }
