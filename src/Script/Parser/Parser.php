@@ -86,10 +86,10 @@ class Parser implements \Iterator
      * @param integer $strSize
      * @return int|bool
      */
-    private function unpackSize(string $packFormat, int $strSize): mixed
+    private function unpackSize(string $packFormat, int $strSize): int
     {
         if ($this->end - $this->position < $strSize) {
-            return false;
+            return -1;
         }
 
         $size = unpack($packFormat, substr($this->data, $this->position, $strSize));
@@ -125,7 +125,7 @@ class Parser implements \Iterator
             }
 
             $delta = ($this->end - $this->position);
-            if ($dataSize === false || $delta < 0 || $delta < $dataSize) {
+            if ($dataSize === -1 || $delta < 0 || $delta < $dataSize) {
                 throw new \RuntimeException('Failed to unpack data from Script');
             }
 
