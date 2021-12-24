@@ -32,7 +32,7 @@ class InputCollectionMutator extends AbstractCollectionMutator
     /**
      * @return InputMutator
      */
-    public function current(): InputMutator
+    public function current(): mixed
     {
         return $this->myIterator->current();
     }
@@ -41,7 +41,7 @@ class InputCollectionMutator extends AbstractCollectionMutator
      * @param int $offset
      * @return InputMutator
      */
-    public function offsetGet($offset): InputMutator
+    public function offsetGet($offset): mixed
     {
         if (!$this->set->offsetExists($offset)) {
             throw new \OutOfRangeException('Input does not exist');
