@@ -178,7 +178,7 @@ class Parser implements \Iterator
     /**
      * @return Operation
      */
-    public function current(): mixed
+    public function current(): Operation
     {
         if (isset($this->array[$this->execPtr])) {
             $exec = $this->array[$this->execPtr];
