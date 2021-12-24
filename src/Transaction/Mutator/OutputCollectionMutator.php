@@ -30,7 +30,7 @@ class OutputCollectionMutator extends AbstractCollectionMutator
     /**
      * @return OutputMutator
      */
-    public function current(): OutputMutator
+    public function current(): mixed
     {
         return $this->myIterator->current();
     }
@@ -39,7 +39,7 @@ class OutputCollectionMutator extends AbstractCollectionMutator
      * @param int $offset
      * @return OutputMutator
      */
-    public function offsetGet($offset): OutputMutator
+    public function offsetGet($offset): mixed
     {
         if (!$this->set->offsetExists($offset)) {
             throw new \OutOfRangeException('Nothing found at this offset');
