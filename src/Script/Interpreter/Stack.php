@@ -201,7 +201,7 @@ class Stack implements \Countable, \ArrayAccess, \Iterator
         }
     }
 
-    public function pop(): BufferInterface|bool
+    public function pop(): mixed
     {
         $count = count($this);
         if ($count === 0) {
