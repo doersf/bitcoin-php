@@ -1,5 +1,5 @@
 {
-    "name": "bitwasp/bitcoin",
+    "name": "doersf/bitcoin-php",
     "description": "PHP Bitcoin library with functions for transactions, signatures, serialization, Random/Deterministic ECDSA keys, blocks, RPC bindings",
     "type": "library",
     "homepage": "https://github.com/doersf/bitcoin-php",
@@ -28,8 +28,8 @@
 	}
     },
     "require": {
-	"php-64bit": ">=7.2",
-	"composer/semver": "^1.4.0|^3.2.0",
+	"php-64bit": ">=8.0",
+	"composer/semver": "^3.2.0",
 	"mdanter/ecc": "^1.0.0",
 	"bitwasp/buffertools": "^0.5.0",
 	"ext-json": "*",
